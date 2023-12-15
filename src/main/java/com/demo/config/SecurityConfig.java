@@ -20,25 +20,25 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-    @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user1 = new User("mike",passwordEncoder().encode("123"), Collections.emptyList());
-        UserDetails user2 = User.builder()
-                .username("Bob")
-                .password(passwordEncoder().encode("124"))
-                .build();
-        return new InMemoryUserDetailsManager(user1,user2);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        UserDetails user1 = new User("mike",passwordEncoder().encode("123"), Collections.emptyList());
+//        UserDetails user2 = User.builder()
+//                .username("Bob")
+//                .password(passwordEncoder().encode("124"))
+//                .build();
+//        return new InMemoryUserDetailsManager(user1,user2);
+//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
-                        request.requestMatchers("/login","/css/**",
-                                        "/js/**","/scss/**").permitAll()
+                        request.requestMatchers("/user/create","/login","/css/**",
+                                        "/js/**").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form-> form.loginPage("/login")
-                        .defaultSuccessUrl("/")).build();
+                        .defaultSuccessUrl("/",true)).build();
 
     }
 }
