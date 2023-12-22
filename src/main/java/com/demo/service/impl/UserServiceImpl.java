@@ -1,6 +1,6 @@
 package com.demo.service.impl;
 
-import com.demo.UserRepository;
+import com.demo.repository.UserRepository;
 import com.demo.dto.UserDTO;
 import com.demo.entity.User;
 import com.demo.mapper.UserMapper;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PasswordEncoder encoder;
