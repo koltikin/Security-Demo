@@ -12,3 +12,15 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: your google client-id
+            client-secret: your google client-secret
+
+          github:
+            client-id: your github client-id
+            client-secret: your github client-secret
