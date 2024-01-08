@@ -35,10 +35,14 @@ public class SecurityConfig {
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
                         request.requestMatchers("/user/create","/login","/css/**",
-                                        "/js/**").permitAll()
+                                        "/js/**","/images/**").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(form-> form.loginPage("/login")
-                        .defaultSuccessUrl("/",true)).build();
+                        .defaultSuccessUrl("/",true))
+                .oauth2Login(oauth2->oauth2
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true))
+                .build();
 
     }
 }
